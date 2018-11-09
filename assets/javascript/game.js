@@ -7,6 +7,8 @@ var game = {
     chosenWordArray: [],
     alreadyGuessed: [],
     correctlyGuessed: [],
+    spaces: [],
+    hiddenLetters: "",
     wins: 0,
     losses: 0,
 
@@ -24,21 +26,31 @@ var game = {
     },
 
     gameStart: function () {
-        for (i = 0; i < this.answer.length; i++) {
-
-        }
         this.randomWord();
+        for (var i = 0; i < this.chosenWordArray.length; i++) {
+            this.spaces = [this.answer.length];
+            this.spaces[i] = "_ ";
+            this.hiddenLetters += this.spaces[i];
+            document.getElementById("spaces").innerHTML = this.hiddenLetters;
+        }
+        this.hiddenLetters ="";
+        
         console.log(this.chosenWordArray);
     },
 
     reset: function () {
         this.answer = "",
-        this.guessesLeft = 9,
-        this.chosenWordArray = [],
-        this.correctlyGuessed = [],
-        this.alreadyGuessed = [],
-        this.gameStart();
-    }
+            this.guessesLeft = 9,
+            this.chosenWordArray = [],
+            this.correctlyGuessed = [],
+            this.alreadyGuessed = [],
+            this.gameStart();
+        this.wins -= 1;
+        document.getElementById("guesses").innerHTML = this.guessesLeft;
+        document.getElementById("guessedLetters").innerHTML = this.alreadyGuessed;
+    },
+
+
 
 
 }
@@ -55,12 +67,12 @@ document.onkeyup = function () {
         if (guessedLetter === game.alphabet[i]) {
 
             if (game.chosenWordArray.indexOf(guessedLetter) >= 0) {
-                for(i = game.chosenWordArray.length - 1; i >= 0; i--) {
-                    if(game.chosenWordArray[i] === guessedLetter) {
+                for (i = game.chosenWordArray.length - 1; i >= 0; i--) {
+                    if (game.chosenWordArray[i] === guessedLetter) {
                         game.chosenWordArray.splice(i, 1);
                     }
                 }
-                
+
                 console.log(game.correctlyGuessed)
                 console.log(game.chosenWordArray)
 
@@ -68,20 +80,27 @@ document.onkeyup = function () {
             else if (guessedLetter === game.alphabet[i] && game.correctlyGuessed.indexOf(guessedLetter) === -1) {
                 game.alreadyGuessed.push(guessedLetter);
                 game.guessesLeft--;
+                document.getElementById("guesses").innerHTML = game.guessesLeft;
+                document.getElementById("guessedLetters").innerHTML = game.alreadyGuessed;
                 console.log(game.guessesLeft)
                 console.log("Here are the guessed letters " + game.alreadyGuessed);
             }
         }
 
-        if (game.chosenWordArray.length === 0 && guessesLeft >= 1) {
+        if (game.chosenWordArray.length === 0 && game.guessesLeft >= 1) {
             alert("You Win!")
             game.wins++;
-            console.log(game.wins);
+            console.log("You Have Won " + game.wins);
+            document.getElementById("winsnumber").innerHTML = game.wins++;
+            game.reset();
+            return;
+        }
+        else if (game.guessesLeft === 0) {
+            console.log("You Lose")
+            game.losses++;
+            document.getElementById("losses").innerHTML = game.losses;
             game.reset();
         }
-        else if(game.guessesLeft === 1 && game.chosenWordArray.length != 0) {
-            console.log("You Lose")
-        } 
     }
 }
 
