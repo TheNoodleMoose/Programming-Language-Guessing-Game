@@ -1,7 +1,7 @@
 
 var game = {
     alphabet: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0'],
-    word: ["ruby", "mongodb", "javascript", "python", "html", "css"],
+    word: ["ruby", "mongodb", "javascript", "python", "html", "css", "jquery", "react", "express", "node"],
     answer: "",
     guessesLeft: 9,
     chosenWordArray: [],
@@ -33,8 +33,8 @@ var game = {
             this.hiddenLetters += this.spaces[i];
             document.getElementById("spaces").innerHTML = this.hiddenLetters;
         }
-        this.hiddenLetters ="";
-        
+        this.hiddenLetters = "";
+
         console.log(this.chosenWordArray);
     },
 
