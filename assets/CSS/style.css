@@ -5,7 +5,10 @@ body {
 }
 
 header {
+    background-color: rgb(248,249,250);
     padding-bottom: 50px;
+    padding: 0;
+    margin-bottom: 20px;
 }
 
 .nav-center {
@@ -23,5 +26,9 @@ header {
 .jumbo-size {
     max-width: 960px;
     margin: 0 auto;
+}
+
+.nav-width {
+    max-width: 960px;
 }
 
