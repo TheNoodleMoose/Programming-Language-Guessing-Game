@@ -38,7 +38,7 @@ var game = {
 
     reset: function () {
         this.answer = "",
-            this.guessesLeft = 9,
+            this.guessesLeft = " " + 9,
             this.chosenWordArray = [],
             this.correctlyGuessed = [],
             this.alreadyGuessed = [],
@@ -89,7 +89,7 @@ document.onkeyup = function () {
                 game.alreadyGuessed.push(guessedLetter);
                 game.guessesLeft--;
                 document.getElementById("guesses").innerHTML = " " + game.guessesLeft;
-                document.getElementById("guessedLetters").innerHTML = game.alreadyGuessed;
+                document.getElementById("guessedLetters").innerHTML = " " + game.alreadyGuessed;
                 console.log(game.guessesLeft)
                 console.log("Here are the guessed letters " + game.alreadyGuessed);
             }
@@ -99,7 +99,7 @@ document.onkeyup = function () {
             alert("You Win!")
             game.wins++;
             console.log("You Have Won " + game.wins);
-            document.getElementById("winsnumber").innerHTML = game.wins++;
+            document.getElementById("winsnumber").innerHTML = " " + game.wins++;
             game.reset();
             return;
         }
