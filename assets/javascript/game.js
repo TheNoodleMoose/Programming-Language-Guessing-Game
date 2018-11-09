@@ -88,7 +88,7 @@ document.onkeyup = function () {
             else if (guessedLetter === game.alphabet[i] && game.correctlyGuessed.indexOf(guessedLetter) === -1) {
                 game.alreadyGuessed.push(guessedLetter);
                 game.guessesLeft--;
-                document.getElementById("guesses").innerHTML = game.guessesLeft;
+                document.getElementById("guesses").innerHTML = " " + game.guessesLeft;
                 document.getElementById("guessedLetters").innerHTML = game.alreadyGuessed;
                 console.log(game.guessesLeft)
                 console.log("Here are the guessed letters " + game.alreadyGuessed);
@@ -106,7 +106,7 @@ document.onkeyup = function () {
         else if (game.guessesLeft === 0) {
             alert("You Lose!")
             game.losses++;
-            document.getElementById("losses").innerHTML = game.losses;
+            document.getElementById("losses").innerHTML = " " + game.losses;
             game.reset();
         }
     }
