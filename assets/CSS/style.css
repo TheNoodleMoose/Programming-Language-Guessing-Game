@@ -32,3 +32,8 @@ header {
     max-width: 960px;
 }
 
+#spaces {
+    font-size: 1.3em;
+    word-spacing: .5rem;
+}
+

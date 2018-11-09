@@ -31,7 +31,7 @@ var game = {
             this.hiddenLetters += "_ ";
             document.getElementById("spaces").innerHTML = this.hiddenLetters;
         }
-        
+
         console.log(this.hiddenLetters);
         console.log(this.chosenWordArray);
     },
@@ -43,8 +43,8 @@ var game = {
             this.correctlyGuessed = [],
             this.alreadyGuessed = [],
             this.hiddenLetters = "";
-            this.gameStart();
-            
+        this.gameStart();
+
         this.wins -= 1;
         document.getElementById("guesses").innerHTML = this.guessesLeft;
         document.getElementById("guessedLetters").innerHTML = this.alreadyGuessed;
@@ -96,12 +96,16 @@ document.onkeyup = function () {
         }
 
         if (game.chosenWordArray.length === 0 && game.guessesLeft >= 1) {
-            alert("You Win!")
-            game.wins++;
-            console.log("You Have Won " + game.wins);
-            document.getElementById("winsnumber").innerHTML = " " + game.wins++;
-            game.reset();
-            return;
+            setTimeout(function () {
+                alert("You Win!")
+                game.wins++;
+                console.log("You Have Won " + game.wins);
+                document.getElementById("winsnumber").innerHTML = " " + game.wins++;
+                game.reset();
+                return;
+            }, 200);
+
+
         }
         else if (game.guessesLeft === 0) {
             alert("You Lose!")
