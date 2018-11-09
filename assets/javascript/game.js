@@ -1,13 +1,13 @@
-
+// Object that holds all my variables for the game
 var game = {
-    alphabet: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0'],
+    //holds values to make sure the player is
+    alphabet: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'],
     word: ["ruby", "mongodb", "javascript", "python", "html", "css", "jquery", "react", "express", "node"],
     answer: "",
     guessesLeft: 9,
     chosenWordArray: [],
     alreadyGuessed: [],
     correctlyGuessed: [],
-    spaces: [],
     hiddenLetters: "",
     wins: 0,
     losses: 0,
@@ -28,13 +28,11 @@ var game = {
     gameStart: function () {
         this.randomWord();
         for (var i = 0; i < this.chosenWordArray.length; i++) {
-            this.spaces = [this.answer.length];
-            this.spaces[i] = "_ ";
-            this.hiddenLetters += this.spaces[i];
+            this.hiddenLetters += "_ ";
             document.getElementById("spaces").innerHTML = this.hiddenLetters;
         }
-        this.hiddenLetters = "";
-
+        
+        console.log(this.hiddenLetters);
         console.log(this.chosenWordArray);
     },
 
@@ -44,15 +42,24 @@ var game = {
             this.chosenWordArray = [],
             this.correctlyGuessed = [],
             this.alreadyGuessed = [],
+            this.hiddenLetters = "";
             this.gameStart();
+            
         this.wins -= 1;
         document.getElementById("guesses").innerHTML = this.guessesLeft;
         document.getElementById("guessedLetters").innerHTML = this.alreadyGuessed;
     },
 
-
-
-
+    showLetter: function (z) {
+        let array = game.hiddenLetters.split(" ");
+        for (i = game.correctlyGuessed.length - 1; i >= 0; i--) {
+            if (game.correctlyGuessed[i] === z) {
+                array.splice(i, 1, z);
+            }
+        }
+        game.hiddenLetters = array.join(" ");
+        document.getElementById("spaces").innerHTML = this.hiddenLetters;
+    }
 }
 
 //When the browser loads, run the gameStart function
@@ -70,6 +77,7 @@ document.onkeyup = function () {
                 for (i = game.chosenWordArray.length - 1; i >= 0; i--) {
                     if (game.chosenWordArray[i] === guessedLetter) {
                         game.chosenWordArray.splice(i, 1);
+                        game.showLetter(guessedLetter);
                     }
                 }
 
@@ -96,7 +104,7 @@ document.onkeyup = function () {
             return;
         }
         else if (game.guessesLeft === 0) {
-            console.log("You Lose")
+            alert("You Lose!")
             game.losses++;
             document.getElementById("losses").innerHTML = game.losses;
             game.reset();
