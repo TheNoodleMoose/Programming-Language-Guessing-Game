@@ -1,8 +1,9 @@
 // Object that holds all my variables for the game
 var game = {
     //holds values to make sure the player is
-    alphabet: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'],
-    word: ["ruby", "mongodb", "javascript", "python", "html", "css", "jquery", "react", "express", "node", "java", "rust", "php", "markdown"],
+    alphabet: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', "#", "+", "-", "=","1","2","3","4","5","6","7","8","9"],
+    word: ["ruby", "mongodb", "javascript", "python", "html", "css", "jquery", "react", 
+    "express", "node", "java", "rust", "php", "markdown", "mysql", "ajax","c#", "c++"],
     answer: "",
     guessesLeft: 9,
     chosenWordArray: [],
